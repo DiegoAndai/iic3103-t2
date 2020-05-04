@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @hamburguesa.nombre %>
+</p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @hamburguesa.descripcion %>
+</p>
+
+<p>
+  <strong>Imagen:</strong>
+  <%= @hamburguesa.imagen %>
+</p>
+
+<p>
+  <strong>Precio:</strong>
+  <%= @hamburguesa.precio %>
+</p>
+
+<%= link_to 'Edit', edit_hamburguesa_path(@hamburguesa) %> |
+<%= link_to 'Back', hamburguesas_path %>
