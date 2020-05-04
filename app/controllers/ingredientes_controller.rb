@@ -3,27 +3,27 @@ class IngredientesController < ApplicationController
 
   def index
     @ingredientes = Ingrediente.all
-    render json: @ingredientes
+    respond_with @ingredientes
   end
 
   def show
-    render json: @ingrediente
+    respond_with @ingrediente
   end
 
   def create
     @ingrediente = Ingrediente.new(ingrediente_params)
     if @ingrediente.save
-      render json: @ingrediente, status: :created
+      respond_with @ingrediente, status: :created
     else
-      render json: @ingrediente.errors, status: :unprocessable_entity
+      respond_with @ingrediente.errors, status: :unprocessable_entity
     end
   end
 
   def update
     if @ingrediente.update(hamburguesa_params)
-      render json: @ingrediente, status: :ok
+      respond_with @ingrediente, status: :ok
     else
-      render json: @ingrediente.errors, status: :unprocessable_entity
+      respond_with @ingrediente.errors, status: :unprocessable_entity
     end
   end
 

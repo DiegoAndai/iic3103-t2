@@ -16,4 +16,5 @@ module Iic3103T2
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
   end
+  Rails.application.routes.default_url_options[:host] = ENV.fetch('APPLICATION_HOST')
 end

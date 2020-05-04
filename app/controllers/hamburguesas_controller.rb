@@ -3,32 +3,54 @@ class HamburguesasController < ApplicationController
 
   def index
     @hamburguesas = Hamburguesa.all
-    render json: @hamburguesas
+    respond_with @hamburguesas
   end
 
   def show
-    render json: @hamburguesa
+    respond_with @hamburguesa
   end
 
   def create
     @hamburguesa = Hamburguesa.new(hamburguesa_params)
     if @hamburguesa.save
-      render json: @hamburguesa, status: :created
+      respond_with @hamburguesa, status: :created
     else
-      render json: @hamburguesa.errors, status: :unprocessable_entity
+      respond_with @hamburguesa.errors, status: :unprocessable_entity
     end
   end
 
   def update
     if @hamburguesa.update(hamburguesa_params)
-      render json: @hamburguesa, status: :ok
+      respond_with @hamburguesa, status: :ok
     else
-      render json: @hamburguesa.errors, status: :unprocessable_entity
+      respond_with @hamburguesa.errors, status: :unprocessable_entity
     end
   end
 
   def destroy
     @hamburguesa.destroy
+  end
+
+  def add_ingrediente
+    ingrediente = Ingrediente.find(params[:ingrediente_id])
+    hamburguesa = Hamburguesa.find(params[:hamburguesa_id])
+    hamburguesa.ingredientes << ingrediente
+    if hamburguesa.save
+      respond_with hamburguesa, status: :ok
+    else
+      respond_with hamburguesa.errors, status: :unprocessable_entity
+    end
+  end
+
+  def delete_ingrediente
+    ingrediente = Ingrediente.find(params[:ingrediente_id])
+    hamburguesa = Hamburguesa.find(params[:hamburguesa_id])
+    hamburguesa.ingredientes.delete(ingrediente)
+    if hamburguesa.save
+      respond_with hamburguesa, status: :ok
+    else
+      respond_with hamburguesa.errors, status: :unprocessable_entity
+    end
   end
 
   private
