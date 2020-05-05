@@ -36,7 +36,7 @@ class HamburguesasController < ApplicationController
     hamburguesa = Hamburguesa.find(params[:hamburguesa_id])
     hamburguesa.ingredientes << ingrediente
     if hamburguesa.save
-      respond_with hamburguesa, status: :ok
+      respond_with hamburguesa, status: :created
     else
       respond_with hamburguesa.errors, status: :unprocessable_entity
     end
