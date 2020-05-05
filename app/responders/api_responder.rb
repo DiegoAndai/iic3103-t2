@@ -1,9 +1,8 @@
 class ApiResponder < ActionController::Responder
   def respond
     return display_errors if has_errors?
-    return { status: :ok } if delete?
 
-    display resource, status_code: status_code
+    display resource, status_code: options[:status] || get_status_code
   end
 
   private
@@ -23,7 +22,7 @@ class ApiResponder < ActionController::Responder
     end
   end
 
-  def status_code
+  def get_status_code
     return :created if post?
     :ok
   end

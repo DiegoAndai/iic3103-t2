@@ -28,7 +28,11 @@ class IngredientesController < ApplicationController
   end
 
   def destroy
-    @ingrediente.destroy
+    if @ingrediente.hamburguesas.empty?
+      @ingrediente.destroy
+    else
+      respond_with @ingrediente, status: :conflict
+    end
   end
 
   private
