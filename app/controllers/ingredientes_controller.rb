@@ -30,6 +30,7 @@ class IngredientesController < ApplicationController
   def destroy
     if @ingrediente.hamburguesas.empty?
       @ingrediente.destroy
+      head :ok
     else
       respond_with @ingrediente, status: :conflict
     end

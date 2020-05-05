@@ -29,6 +29,7 @@ class HamburguesasController < ApplicationController
 
   def destroy
     @hamburguesa.destroy
+    head :ok
   end
 
   def add_ingrediente
